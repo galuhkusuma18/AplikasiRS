@@ -4,18 +4,29 @@
  * and open the template in the editor.
  */
 package RumahSakit;
-
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author udins
  */
-public class rekam_medis extends javax.swing.JFrame {
+public final class rekam_medis extends javax.swing.JFrame {
 
     /**
      * Creates new form rekam_medis
      */
+    DefaultTableModel model;
     public rekam_medis() {
         initComponents();
+        TampilData();
     }
 
     /**
@@ -27,28 +38,63 @@ public class rekam_medis extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        no_pasien = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        nama_pasien = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jenis_kelamin = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        status = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        poli = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        dokter = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        hasil_amnesa = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        diagnosa = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        terapi = new javax.swing.JTextField();
+        input = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabel = new javax.swing.JTable();
+        update = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,9 +103,9 @@ public class rekam_medis extends javax.swing.JFrame {
 
         jLabel2.setText("no_pasien");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        no_pasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                no_pasienActionPerformed(evt);
             }
         });
 
@@ -67,15 +113,15 @@ public class rekam_medis extends javax.swing.JFrame {
 
         jLabel4.setText("jenis _kelamin");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilihan", "Laki-Laki", "Perempuan" }));
+        jenis_kelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilihan", "Laki-Laki", "Perempuan" }));
 
         jLabel5.setText("status");
 
         jLabel6.setText("poli");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        poli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                poliActionPerformed(evt);
             }
         });
 
@@ -87,12 +133,57 @@ public class rekam_medis extends javax.swing.JFrame {
 
         jLabel10.setText("terapi");
 
-        jButton1.setText("input");
+        input.setText("input");
+        input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "no_pasien", "nama_pasuen", "jenis_kelamin", "status", "poli", "dokter", "hasil_amnesa", "diagnosa", "terapi"
+            }
+        ));
+        jScrollPane3.setViewportView(tabel);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        update.setText("update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
+        delete.setText("delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
             }
         });
 
@@ -103,7 +194,7 @@ public class rekam_medis extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(input)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
                         .addComponent(jLabel3)
@@ -114,30 +205,34 @@ public class rekam_medis extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addComponent(jLabel9)
                         .addComponent(jLabel10)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nama_pasien, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(no_pasien, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(terapi, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(diagnosa, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hasil_amnesa, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dokter, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(status, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(poli)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jenis_kelamin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 218, Short.MAX_VALUE))
-                                    .addComponent(jTextField4))
-                                .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                                        .addComponent(update)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(delete)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton2)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,44 +242,48 @@ public class rekam_medis extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(no_pasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nama_pasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jenis_kelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(poli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hasil_amnesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(diagnosa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(terapi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(input)
+                    .addComponent(update)
+                    .addComponent(jButton2)
+                    .addComponent(delete))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(312, 312, 312))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,7 +292,7 @@ public class rekam_medis extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,19 +304,36 @@ public class rekam_medis extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void no_pasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_pasienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_no_pasienActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void poliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poliActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_poliActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new HOME().setVisible(true);
+         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputActionPerformed
+        // TODO add your handling code here:
+        simpandata();
+        TampilData();
+    }//GEN-LAST:event_inputActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        // TODO add your handling code here:
+        ubahdata();
+        TampilData();
+    }//GEN-LAST:event_updateActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+        hapusdata();
+        TampilData();
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,9 +371,12 @@ public class rekam_medis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton delete;
+    private javax.swing.JTextField diagnosa;
+    private javax.swing.JTextField dokter;
+    private javax.swing.JTextField hasil_amnesa;
+    private javax.swing.JButton input;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -269,13 +388,170 @@ public class rekam_medis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox<String> jenis_kelamin;
+    private javax.swing.JTextField nama_pasien;
+    private javax.swing.JTextField no_pasien;
+    private javax.swing.JTextField poli;
+    private javax.swing.JTextField status;
+    private javax.swing.JTable tabel;
+    private javax.swing.JTextField terapi;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
-}
+public void TampilData() {
+     Object [] baris = {"no_pasien","nama_pasien","jenis_kelamin","status","poli","dokter","hasil_amnesa","diagnosa","terapi"};
+     model = new DefaultTableModel(null, baris);
+     tabel.setModel(model);
+     Connection connection = new koneksi().getcConnection();
+     try{
+         String sql = "select * from rekam_medis order by no_pasien asc";
+         java.sql.Statement statement = connection.createStatement();
+         java.sql.ResultSet hasil = statement.executeQuery(sql);
+         while (hasil.next()) {
+             String nopasien = hasil.getString("no_pasien");
+             String namapasien = hasil.getString("nama_pasien");
+             String jkelamin = hasil.getString("jenis_kelamin");
+             String Status = hasil.getString("status");
+             String Poli = hasil.getString("poli");
+             String Dokter = hasil.getString("dokter");
+             String hsl = hasil.getString("hasil_amnesa");
+             String Diagnosa = hasil.getString("diagnosa");
+             String Terapi = hasil.getString("terapi");
+             String [] data = {nopasien, namapasien, jkelamin, Status,Poli,Dokter,hsl, Diagnosa,Terapi};
+             model.addRow(data);            
+         }
+     }catch(SQLException e) {
+         //JOptionPane.showMessageDialog(null, "Menampilkan data Gagal","informasi", JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(null, "Menampilkan data Gagal" + e);
+        }
+    }
+    void simpandata() {
+        //Deklarasi Variabel
+        String nopasien = no_pasien.getText();
+        String namapasien = nama_pasien.getText();
+        String jkelamin = jenis_kelamin.getSelectedItem().toString();
+        String Status = status.getText();
+        String Poli = poli.getText();
+        String Dokter = dokter.getText();
+        String hsl = hasil_amnesa.getText();
+        String Diagnosa = diagnosa.getText();
+        String Terapi = terapi.getText();
+        
+        //Koneksi terhadap database
+        Connection connection = new koneksi().getcConnection();
+        
+        
+       //proses penyimpanan
+       try{
+           String sql = "insert into rekam_medis values(?,?,?,?,?,?,?,?,?)";
+           PreparedStatement statement = connection.prepareStatement(sql);
+          // connection.prepareStatement(sql);
+          
+          statement.setString(1, nopasien);
+          statement.setString(2, namapasien);
+          statement.setString(3, jkelamin);
+          statement.setString(4, Status);
+          statement.setString(5, Poli);
+          statement.setString(6, Dokter);
+          statement.setString(7, hsl);
+          statement.setString(8, Diagnosa);
+          statement.setString(9, Terapi);
+          
+          statement.executeUpdate();
+          JOptionPane.showMessageDialog(null, "DATA BERHASIL DISIMPAN","informasi",JOptionPane.INFORMATION_MESSAGE);
+          
+          //TampilData();
+          //Tambah fungsi refreash
+          
+          
+       }catch (HeadlessException | SQLException e) {
+           //JOptionPane.showMessageDialog(null, "DATA GAGAL DISIMPAN", "informasi");
+          //JOptionPane.(INFORMATION_MESSAGE);
+          
+          JOptionPane.showMessageDialog(null,"DATA GAGAL DISIMPAN \n"+e); //Menampilkan laporan gagal disimpan
+       }
+        
+        
+    }
+    void ubahdata() {
+        //Deklarasi Variabel
+        String nopasien = no_pasien.getText();
+        String namapasien = nama_pasien.getText();
+        String jkelamin = jenis_kelamin.getSelectedItem().toString();
+        String Status = status.getText();
+        String Poli = poli.getText();
+        String Dokter = dokter.getText();
+        String hsl = hasil_amnesa.getText();
+        String Diagnosa = diagnosa.getText();
+        String Terapi = terapi.getText();
+        
+        //Koneksi terhadap database
+        Connection connection = new koneksi().getcConnection();
+        
+        
+       //proses penyimpanan
+       try{
+           String sql = "update rekam_medis set nama_pasien=?,jenis_kelamin=?,status=?,poli=?,dokter=?,hasil_amnesa=?,diagnosa=?,terapi=? where no_pasien=?";
+           PreparedStatement statement = connection.prepareStatement(sql);
+          // connection.prepareStatement(sql);
+          
+          
+          statement.setString(1, namapasien);
+          statement.setString(2, jkelamin);
+          statement.setString(3, Status);
+          statement.setString(4, Poli);
+          statement.setString(5, Dokter);
+          statement.setString(6, hsl);
+          statement.setString(7, Diagnosa);
+          statement.setString(8, Terapi);
+          statement.setString(9, nopasien);
+          
+          statement.executeUpdate();
+          JOptionPane.showMessageDialog(null, "DATA BERHASIL DIUBAH","informasi",JOptionPane.INFORMATION_MESSAGE);
+          
+          //TampilData();
+          //Tambah fungsi refreash
+          
+          
+       }catch (HeadlessException | SQLException e) {
+           //JOptionPane.showMessageDialog(null, "DATA GAGAL DISIMPAN", "informasi");
+          //JOptionPane.(INFORMATION_MESSAGE);
+          
+          JOptionPane.showMessageDialog(null,"DATA GAGAL DIUBAH \n"+e); //Menampilkan laporan gagal disimpan
+       }
+        
+        
+    }
+    public void hapusdata() {
+        int baris = tabel.getSelectedRow();
+        String no_pasien = model.getValueAt(baris,0).toString();
+        
+        int Data = JOptionPane.showConfirmDialog(null, "APAKAH ANDA YAKIN UNTUK MENGHAPUS DATA no_pasien :"+ no_pasien + "?",
+                "konfirmasi",JOptionPane.YES_NO_OPTION);
+        if (Data == 0){
+            try{
+                //panggil method koneksi
+                Connection connection = new koneksi().getcConnection();
+                String sql = "delete from rekam_medis where no_pasien='" + no_pasien + "'";
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "data berhasil dihapus");
+                
+                TampilData();
+                
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Data gagal dihapus !!");
+            }
+        }
+    }
+   }
+   
+  
+
+
+

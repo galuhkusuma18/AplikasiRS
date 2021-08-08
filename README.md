@@ -22,12 +22,26 @@ Judul : Aplikasi Pendaftaran Rumah Sakit
         yang di derita pasien, dan jika pasien tersebut adalah pasien lama maka tidak perlu
         mengisi data, hanya perlu mengisi poli yang sesuai dengan yang di derita pasien setelah
         itu admin mengajukan pendaftaran.
-
+LOGIN
 ![WhatsApp Image 2021-07-12 at 08 21 32](https://user-images.githubusercontent.com/87234970/128619968-d4d51974-b7fa-4d4b-954f-ac188c74594a.jpeg)![WhatsApp Image 2021-07-12 at 08 21 32 (4)](https://user-images.githubusercontent.com/87234970/128620013-9a987fc6-513c-4ca4-b722-73640a576a04.jpeg)
 
-![WhatsApp Image 2021-07-12 at 08 21 32 (1)](https://user-images.githubusercontent.com/87234970/128620020-0013628b-9db8-4c33-8ffd-4aebf4579b11.jpeg)
+MENU PASIEN BARU/LAMA
+![WhatsApp Image 2021-07-12 at 08 21 32 (4)](https://user-images.githubusercontent.com/87234970/128620050-6128a0c2-40e5-4ecc-a045-38f5555dfb6b.jpeg)
 
-![WhatsApp Image 2021-07-12 at 08 21 32 (3)](https://user-images.githubusercontent.com/87234970/128620033-b4444182-6376-471d-ba50-bebbd5ed83c0.jpeg)
-![WhatsApp Image 2021-07-12 at 08 21 32 (5)](https://user-images.githubusercontent.com/87234970/128620038-5cef475f-d3fa-40f8-a726-664bc23badde.jpeg)
-![WhatsApp Image 2021-07-12 at 08 21 32](https://user-images.githubusercontent.com/87234970/128620039-890c614e-8be8-4b1c-b8ec-48ece54d119b.jpeg)
+MENU PASIEN LAMA
+![WhatsApp Image 2021-07-12 at 08 21 32 (2)](https://user-images.githubusercontent.com/87234970/128620060-7c22e201-f9c3-4695-a753-669b22239332.jpeg)
+
+PASIEN BARU
+![WhatsApp Image 2021-07-12 at 08 21 32 (1)](https://user-images.githubusercontent.com/87234970/128620067-7bcf48c8-6421-4162-84d5-021853529eb5.jpeg)
+
+PILIHAN POLI
+![WhatsApp Image 2021-07-12 at 08 21 32 (3)](https://user-images.githubusercontent.com/87234970/128620079-a00e64ad-159f-40e6-9409-158159a3b829.jpeg)
+
+FORM PASIEN
+![WhatsApp Image 2021-07-12 at 08 21 32](https://user-images.githubusercontent.com/87234970/128620086-2f0d4cff-2780-4fb3-8699-aed71c88f9bc.jpeg)
+
+FORM REKAM MEDIS
+![WhatsApp Image 2021-07-12 at 08 21 32 (5)](https://user-images.githubusercontent.com/87234970/128620096-419680f9-f82a-4997-a6d0-473d7e42e896.jpeg)
+
+
 

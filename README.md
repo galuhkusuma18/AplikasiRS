@@ -23,8 +23,7 @@ Judul : Aplikasi Pendaftaran Rumah Sakit
         mengisi data, hanya perlu mengisi poli yang sesuai dengan yang di derita pasien setelah
         itu admin mengajukan pendaftaran.
 LOGIN
-![WhatsApp Image 2021-07-12 at 08 21 32](https://user-images.githubusercontent.com/87234970/128619968-d4d51974-b7fa-4d4b-954f-ac188c74594a.jpeg)![WhatsApp Image 2021-07-12 at 08 21 32 (4)](https://user-images.githubusercontent.com/87234970/128620013-9a987fc6-513c-4ca4-b722-73640a576a04.jpeg)
-
+![WhatsApp Image 2021-07-12 at 08 21 32](https://user-images.githubusercontent.com/87234970/128619968-d4d51974-b7fa-4d4b-954f-ac188c74594a.jpeg)![WhatsApp Image 2021-07-12 at 08 21 32 (4)]
 
 
 

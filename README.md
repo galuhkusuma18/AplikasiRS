@@ -22,6 +22,8 @@ Judul : Aplikasi Pendaftaran Rumah Sakit
         yang di derita pasien, dan jika pasien tersebut adalah pasien lama maka tidak perlu
         mengisi data, hanya perlu mengisi poli yang sesuai dengan yang di derita pasien setelah
         itu admin mengajukan pendaftaran.
+
+
 LOGIN
 
 
